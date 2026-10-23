@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Character encoding -->
+    <meta charset="UTF-8">
+
+    <!-- Responsive design -->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Manage Data</title>
+
+    <!-- Common CSS -->
+    <link
+        rel="stylesheet"
+        href="/style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+
+        <!-- =========================
+             TOP NAVIGATION
+        ========================== -->
+
+        <div class="top-nav">
+
+            <h3>Student Management</h3>
+
+            <div class="nav-links">
+
+                <a href="/home.html">
+                    Home
+                </a>
+
+                <a href="/post.html">
+                    Add Student
+                </a>
+
+                <a href="/allstudents.html">
+                    All Data
+                </a>
+
+                <a href="/manage.html">
+                    Manage Data
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <h2>
+            Manage Student Data
+        </h2>
+
+
+        <!-- =========================
+             MANAGE FORM
+        ========================== -->
+
+        <form id="manageForm">
+
+
+            <!--
+                MongoDB ID
+
+                User yahan manually MongoDB ID dalega.
+
+                readonly nahi hai,
+                isliye user ID change kar sakta hai.
+            -->
+
+            <label>
+                MongoDB ID
+            </label>
+
+            <input
+                type="text"
+                id="id"
+                placeholder="Enter MongoDB ID"
+            >
+
+
+            <!-- Name -->
+
+            <label>
+                Name
+            </label>
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Enter name"
+            >
+
+
+            <!-- Section -->
+
+            <label>
+                Section
+            </label>
+
+            <input
+                type="text"
+                id="section"
+                placeholder="Enter section"
+            >
+
+
+            <!-- High School + Intermediate -->
+
+            <div class="row">
+
+                <div>
+
+                    <label>
+                        High School
+                    </label>
+
+                    <input
+                        type="number"
+                        id="highschool"
+                        placeholder="High School"
+                    >
+
+                </div>
+
+
+                <div>
+
+                    <label>
+                        Intermediate
+                    </label>
+
+                    <input
+                        type="number"
+                        id="intermediate"
+                        placeholder="Intermediate"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- BCA + MCA -->
+
+            <div class="row">
+
+                <div>
+
+                    <label>
+                        BCA
+                    </label>
+
+                    <input
+                        type="number"
+                        id="bca"
+                        placeholder="BCA"
+                    >
+
+                </div>
+
+
+                <div>
+
+                    <label>
+                        MCA
+                    </label>
+
+                    <input
+                        type="number"
+                        id="mca"
+                        placeholder="MCA"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Update button -->
+
+            <button
+                type="button"
+                id="updateBtn"
+            >
+                Update Student
+            </button>
+
+
+        </form>
+
+
+        <!--
+            Success ya error message
+            initially hidden hai.
+        -->
+
+        <p
+            id="message"
+            style="display: none;"
+        ></p>
+
+
+    </div>
+
+
+
+    <script>
+
+
+        /* =====================================================
+           1. URL SE ID LENA
+           -----------------------------------------------------
+           Agar Edit button se page open hua hai:
+
+           /manage.html?id=65abc123
+
+           to URL se ID mil jayegi.
+        ===================================================== */
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        const urlId =
+            params.get("id");
+
+
+
+        /* =====================================================
+           2. HTML ELEMENTS KO SELECT KARNA
+        ===================================================== */
+
+        const idInput =
+            document.getElementById("id");
+
+
+        const message =
+            document.getElementById("message");
+
+
+        const manageForm =
+            document.getElementById("manageForm");
+
+
+
+        /* =====================================================
+           3. AGAR URL ME ID HAI
+           -----------------------------------------------------
+           Edit button se aaye to ID input me automatically
+           show ho jayegi.
+        ===================================================== */
+
+        if (urlId) {
+
+            idInput.value =
+                urlId;
+
+        }
+
+
+
+        /* =====================================================
+           4. STUDENT DATA LOAD FUNCTION
+           -----------------------------------------------------
+           Agar ID available hai to existing student ka
+           data MongoDB se load kar sakte hain.
+        ===================================================== */
+
+        async function loadStudent() {
+
+
+            /* User ne jo ID input me dali hai */
+
+            const id =
+                idInput.value.trim();
+
+
+            /* ID nahi hai to request mat bhejo */
+
+            if (!id) {
+
+                return;
+            }
+
+
+            /* GET request */
+
+            const response =
+                await fetch(
+                    `/data/${id}`
+                );
+
+
+            /* JSON response */
+
+            const student =
+                await response.json();
+
+
+            /* Agar student nahi mila */
+
+            if (!response.ok) {
+
+                message.textContent =
+                    student.message;
+
+                message.style.display =
+                    "block";
+
+                return;
+            }
+
+
+            /* Existing data form me fill karna */
+
+            document.getElementById("name").value =
+                student.name || "";
+
+
+            document.getElementById("section").value =
+                student.section || "";
+
+
+            document.getElementById("highschool").value =
+                student.highschool || "";
+
+
+            document.getElementById("intermediate").value =
+                student.intermediate || "";
+
+
+            document.getElementById("bca").value =
+                student.bca || "";
+
+
+            document.getElementById("mca").value =
+                student.mca || "";
+
+        }
+
+
+
+        /* =====================================================
+           5. AGAR URL SE ID AAYI HAI
+           -----------------------------------------------------
+           To existing student ka data automatically load karo.
+        ===================================================== */
+
+        if (urlId) {
+
+            loadStudent();
+
+        }
+
+
+
+        /* =====================================================
+           6. UPDATE BUTTON
+        ===================================================== */
+
+        document
+            .getElementById("updateBtn")
+            .addEventListener(
+                "click",
+                async () => {
+
+
+                    /* =================================================
+                       7. ID INPUT SE LENA
+                       -------------------------------------------------
+                       Ab ID readonly nahi hai.
+
+                       User manually bhi ID enter kar sakta hai.
+                    ================================================== */
+
+                    const id =
+                        idInput.value.trim();
+
+
+                    /* ID required hai */
+
+                    if (id === "") {
+
+                        message.textContent =
+                            "Please enter MongoDB ID";
+
+                        message.style.display =
+                            "block";
+
+                        return;
+                    }
+
+
+
+                    /* =================================================
+                       8. FORM VALUES LENA
+                    ================================================== */
+
+                    const name =
+                        document
+                            .getElementById("name")
+                            .value
+                            .trim();
+
+
+                    const section =
+                        document
+                            .getElementById("section")
+                            .value
+                            .trim();
+
+
+                    const highschool =
+                        document
+                            .getElementById("highschool")
+                            .value;
+
+
+                    const intermediate =
+                        document
+                            .getElementById("intermediate")
+                            .value;
+
+
+                    const bca =
+                        document
+                            .getElementById("bca")
+                            .value;
+
+
+                    const mca =
+                        document
+                            .getElementById("mca")
+                            .value;
+
+
+
+                    /* =================================================
+                       9. DATA OBJECT
+                       -------------------------------------------------
+                       Sirf jo fields filled hain,
+                       unko object me add karenge.
+                    ================================================== */
+
+                    const data = {};
+
+
+                    /* Name */
+
+                    if (name !== "") {
+
+                        data.name =
+                            name;
+
+                    }
+
+
+                    /* Section */
+
+                    if (section !== "") {
+
+                        data.section =
+                            section;
+
+                    }
+
+
+                    /* High School */
+
+                    if (highschool !== "") {
+
+                        data.highschool =
+                            Number(highschool);
+
+                    }
+
+
+                    /* Intermediate */
+
+                    if (intermediate !== "") {
+
+                        data.intermediate =
+                            Number(intermediate);
+
+                    }
+
+
+                    /* BCA */
+
+                    if (bca !== "") {
+
+                        data.bca =
+                            Number(bca);
+
+                    }
+
+
+                    /* MCA */
+
+                    if (mca !== "") {
+
+                        data.mca =
+                            Number(mca);
+
+                    }
+
+
+
+                    /* =================================================
+                       10. CHECK KARNA KI DATA FULL HAI YA PARTIAL
+                    ================================================== */
+
+                    const isFullData =
+
+                        name !== "" &&
+                        section !== "" &&
+                        highschool !== "" &&
+                        intermediate !== "" &&
+                        bca !== "" &&
+                        mca !== "";
+
+
+
+                    /* API method ke liye variable */
+
+                    let method;
+
+
+
+                    /* =================================================
+                       11. PUT YA PATCH
+                    ================================================== */
+
+                    if (isFullData) {
+
+
+                        /*
+                            Saara data diya hai.
+
+                            Isliye PUT request.
+                        */
+
+                        method =
+                            "PUT";
+
+                    }
+
+                    else {
+
+
+                        /*
+                            Sirf kuch data diya hai.
+
+                            Isliye PATCH request.
+                        */
+
+                        method =
+                            "PATCH";
+
+                    }
+
+
+
+                    /* =================================================
+                       12. API REQUEST
+                    ================================================= */
+
+                    const response =
+                        await fetch(
+                            `/data/${id}`,
+                            {
+
+                                /* PUT ya PATCH */
+
+                                method:
+                                    method,
+
+
+                                /* JSON data */
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+
+                                /*
+                                    JavaScript object ko JSON string
+                                    me convert karna.
+                                */
+
+                                body:
+                                    JSON.stringify(data)
+
+                            }
+                        );
+
+
+
+                    /* =================================================
+                       13. SERVER RESPONSE
+                    ================================================= */
+
+                    const result =
+                        await response.json();
+
+
+
+                    /* =================================================
+                       14. MESSAGE SHOW KARNA
+                    ================================================= */
+// Pehle message hide karo
+message.style.display = "none";
+
+// Thoda wait karke dobara show karo
+setTimeout(() => {
+
+    message.textContent =
+        result.message;
+
+    message.style.display =
+        "block";
+
+}, 100);
+
+
+                }
+            );
+
+
+    </script>
+
+
+</body>
+
+</html>

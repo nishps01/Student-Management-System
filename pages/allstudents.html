@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>All Students</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Top Navigation -->
+
+        <div class="top-nav">
+
+            <h3>Student Management</h3>
+
+            <div class="nav-links">
+
+                <a href="/home.html">Home</a>
+
+                <a href="/post.html">Add Student</a>
+
+                <a href="/allstudents.html">All Data</a>
+
+                <a href="/manage.html">Manage Data</a>
+
+            </div>
+
+        </div>
+
+
+        <h2>All Students</h2>
+
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Name</th>
+
+                    <th>Section</th>
+
+                    <th>High School</th>
+
+                    <th>Intermediate</th>
+
+                    <th>BCA</th>
+
+                    <th>MCA</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="studentData">
+
+            </tbody>
+
+        </table>
+
+
+        <p id="loading">
+            Loading data...
+        </p>
+
+    </div>
+
+
+    <script>
+
+        async function loadStudents() {
+
+            const response = await fetch("/data");
+
+            const data = await response.json();
+
+
+            const studentData =
+                document.getElementById("studentData");
+
+            const loading =
+                document.getElementById("loading");
+
+
+            loading.style.display = "none";
+
+
+            data.forEach(student => {
+
+                const row =
+                    document.createElement("tr");
+
+
+                row.innerHTML = `
+
+                    <td>${student.name || ""}</td>
+
+                    <td>${student.section || ""}</td>
+
+                    <td>${student.highschool || ""}</td>
+
+                    <td>${student.intermediate || ""}</td>
+
+                    <td>${student.bca || ""}</td>
+
+                    <td>${student.mca || ""}</td>
+
+                    <td>
+
+                        <button
+                            onclick="editStudent('${student._id}')">
+                            Edit
+                        </button>
+
+                        <button
+                            onclick="deleteStudent('${student._id}')">
+                            Delete
+                        </button>
+
+                    </td>
+
+                `;
+
+
+                studentData.appendChild(row);
+
+            });
+
+        }
+
+
+        // Edit button
+        function editStudent(id) {
+
+            window.location.href =
+                `/manage.html?id=${id}`;
+
+        }
+
+
+        // Delete button
+        async function deleteStudent(id) {
+
+            const response =
+                await fetch(`/data/${id}`, {
+
+                    method: "DELETE"
+
+                });
+
+
+            const result =
+                await response.json();
+
+
+            if (response.ok) {
+
+                alert(result.message);
+
+                // Table dobara load karo
+                document.getElementById("studentData").innerHTML = "";
+
+                document.getElementById("loading").style.display = "block";
+
+                loadStudents();
+
+            } else {
+
+                alert(result.message);
+
+            }
+
+        }
+
+
+        loadStudents();
+
+    </script>
+
+</body>
+
+</html>

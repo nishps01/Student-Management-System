@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <link rel="stylesheet" href="/style.css">
+
+    <style>
+        .profile-box {
+            width: 450px;
+            max-width: 100%;
+            margin: auto;
+            text-align: center;
+        }
+
+        .profile-photo {
+            margin-bottom: 20px;
+        }
+
+        .profile-photo img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #333;
+        }
+
+        .profile-form {
+            text-align: left;
+        }
+
+        .update-btn {
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        .logout-btn {
+            display: block;
+            width: 100%;
+            margin-top: 12px;
+            padding: 10px;
+            background-color: #b52b2b;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .logout-btn:hover {
+            background-color: #932323;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="top-nav">
+            <h3>Student Management</h3>
+
+            <div class="nav-links">
+                <a href="/home.html">Home</a>
+                <a href="/post.html">Add Student</a>
+                <a href="/allstudents.html">All Data</a>
+                <a href="/manage.html">Manage Data</a>
+                <a href="/auth/profile.html">Profile</a>
+            </div>
+        </div>
+
+        <div class="profile-box">
+            <h2>My Profile</h2>
+
+            <div class="profile-photo">
+                <img
+                    id="profileImage"
+                    src="/uploads/default-profile.jpg"
+                    alt="Profile Photo"
+                >
+            </div>
+
+            <form
+                class="profile-form"
+                action="/auth/profile"
+                method="POST"
+                enctype="multipart/form-data"
+            >
+                <label for="photo">Profile Photo</label>
+                <input
+                    type="file"
+                    name="photo"
+                    id="photo"
+                    accept="image/*"
+                >
+
+                <label for="name">Name</label>
+                <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    placeholder="Enter your name"
+                    required
+                >
+
+                <label for="email">Email</label>
+                <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    readonly
+                >
+
+                <button type="submit" class="update-btn">
+                    Update Profile
+                </button>
+            </form>
+
+            <a href="/auth/logout" class="logout-btn">
+                Logout
+            </a>
+
+            <p id="profileError" role="alert"></p>
+        </div>
+    </div>
+
+    <script>
+        async function loadProfile() {
+            try {
+                const response = await fetch("/auth/profile");
+
+                if (response.status === 401) {
+                    window.location.href = "/auth/login.html";
+                    return;
+                }
+
+                if (!response.ok) {
+                    throw new Error("Profile load failed");
+                }
+
+                const user = await response.json();
+
+                document.getElementById("name").value =
+                    user.name || "";
+
+                document.getElementById("email").value =
+                    user.email || "";
+
+                document.getElementById("profileImage").src =
+                    user.photo || "/uploads/default-profile.jpg";
+
+            } catch (error) {
+                document.getElementById("profileError").textContent =
+                    "Profile load nahi ho payi. Please try again.";
+            }
+        }
+
+        loadProfile();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1291 @@
+/* =========================================================
+   STUDENT MANAGEMENT SYSTEM
+   PROFESSIONAL COMMON CSS
+   ---------------------------------------------------------
+   Used for:
+   Home
+   Login
+   Register
+   Add Student
+   All Students
+   Manage Data
+   Profile
+   Student Details
+========================================================= */
+
+
+/* =========================================================
+   1. COMMON RESET
+   ---------------------------------------------------------
+   Browser ki default spacing remove kar rahe hain.
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   2. BODY
+   ---------------------------------------------------------
+   Puri website ka common background aur font.
+========================================================= */
+
+body {
+    font-family: Arial, sans-serif;
+
+    background-color: #f1f5f9;
+
+    color: #334155;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   3. MAIN CONTAINER
+   ---------------------------------------------------------
+   Har page ka main white area.
+========================================================= */
+
+.container {
+    width: 1050px;
+
+    max-width: 94%;
+
+    margin: 30px auto;
+
+    padding: 30px;
+
+    background-color: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 12px;
+
+    box-shadow: 0 5px 20px rgba(15, 23, 42, 0.08);
+}
+
+
+/* =========================================================
+   4. TOP NAVIGATION
+   ---------------------------------------------------------
+   Website ke top ka navigation menu.
+========================================================= */
+
+.top-nav {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding-bottom: 18px;
+
+    margin-bottom: 30px;
+
+    border-bottom: 1px solid #e2e8f0;
+}
+
+
+/* Website title */
+
+.top-nav h3 {
+    color: #172033;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+}
+
+
+/* Navigation links container */
+
+.nav-links {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+}
+
+
+/* Navigation links */
+
+.nav-links a {
+    display: inline-block;
+
+    text-decoration: none;
+
+    color: #ffffff;
+
+    background-color: #172033;
+
+    padding: 9px 13px;
+
+    border-radius: 6px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+
+/* Navigation hover */
+
+.nav-links a:hover {
+    background-color: #2563eb;
+}
+
+
+/* =========================================================
+   5. LOGGED-IN USER NAME
+========================================================= */
+
+#userName {
+    padding: 9px 12px;
+
+    color: #1d4ed8;
+
+    background-color: #eff6ff;
+
+    border: 1px solid #bfdbfe;
+
+    border-radius: 6px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   6. HEADINGS
+========================================================= */
+
+h1 {
+    margin-bottom: 8px;
+
+    color: #172033;
+}
+
+
+h2 {
+    text-align: center;
+
+    margin-bottom: 20px;
+
+    color: #172033;
+}
+
+
+h3 {
+    color: #172033;
+}
+
+
+/* =========================================================
+   7. HOME PAGE HERO
+   ---------------------------------------------------------
+   Home page par student image background ke liye.
+========================================================= */
+
+.header {
+    position: relative;
+
+    height: 380px;
+
+    margin: 20px 0 35px;
+
+    padding: 40px 30px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    /* Graduation image */
+    background-image: url("/images/student-bg.jpg");
+
+    /* Image poore section ko cover karegi */
+    background-size: cover;
+
+    /* Center area visible rahe */
+    background-position: center center;
+
+    /* Image repeat nahi hogi */
+    background-repeat: no-repeat;
+}
+
+
+/* Image ke upar dark layer */
+
+.header::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background-color: rgba(15, 23, 42, 0.55);
+
+    border-radius: 12px;
+}
+
+
+/* Header ka text image ke upar */
+
+.header h1,
+.header p {
+    position: relative;
+
+    z-index: 1;
+}
+
+
+/* Main heading */
+
+.header h1 {
+    color: #ffffff;
+
+    font-size: 36px;
+
+    margin-bottom: 12px;
+}
+
+
+/* Header paragraph */
+
+.header p {
+    color: #f8fafc;
+
+    font-size: 16px;
+
+    max-width: 650px;
+}
+
+
+/* =========================================================
+   8. WELCOME SECTION
+========================================================= */
+
+.welcome {
+    text-align: center;
+
+    margin-bottom: 30px;
+
+    padding: 5px;
+}
+
+
+.welcome h2 {
+    margin-bottom: 8px;
+
+    font-size: 25px;
+}
+
+
+.welcome p {
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   9. HOME CARDS
+========================================================= */
+
+.cards {
+    display: flex;
+
+    gap: 20px;
+
+    justify-content: center;
+}
+
+
+/* Single card */
+
+.card {
+    flex: 1;
+
+    padding: 27px 22px;
+
+    text-align: center;
+
+    background-color: #ffffff;
+
+    border: 1px solid #dbe3ec;
+
+    border-radius: 10px;
+
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+}
+
+
+/* Card hover */
+
+.card:hover {
+    border-color: #93c5fd;
+
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.10);
+}
+
+
+/* Card heading */
+
+.card h3 {
+    margin-bottom: 10px;
+
+    font-size: 18px;
+}
+
+
+/* Card paragraph */
+
+.card p {
+    color: #64748b;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    margin-bottom: 19px;
+}
+
+
+/* Card button */
+
+.card a {
+    display: inline-block;
+
+    text-decoration: none;
+
+    background-color: #2563eb;
+
+    color: #ffffff;
+
+    padding: 10px 19px;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+
+/* Card button hover */
+
+.card a:hover {
+    background-color: #1d4ed8;
+}
+
+
+/* =========================================================
+   10. FORM
+   ---------------------------------------------------------
+   Register, Login, Add Student, Profile etc.
+========================================================= */
+
+form {
+    width: 100%;
+}
+
+
+/* Label */
+
+label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    color: #334155;
+}
+
+
+/* Input */
+
+input {
+    width: 100%;
+
+    padding: 11px 12px;
+
+    margin-bottom: 16px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+
+    color: #334155;
+
+    background-color: #ffffff;
+}
+
+
+/* Input focus */
+
+input:focus {
+    outline: none;
+
+    border-color: #2563eb;
+
+    box-shadow: 0 0 0 2px #dbeafe;
+}
+
+
+/* Input placeholder */
+
+input::placeholder {
+    color: #94a3b8;
+}
+
+
+/* =========================================================
+   11. TWO INPUTS IN ONE ROW
+========================================================= */
+
+.row {
+    display: flex;
+
+    gap: 15px;
+}
+
+
+.row > div {
+    flex: 1;
+}
+
+
+/* =========================================================
+   12. COMMON BUTTON
+========================================================= */
+
+button {
+    padding: 10px 17px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background-color: #2563eb;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+/* Button hover */
+
+button:hover {
+    background-color: #1d4ed8;
+}
+
+
+/* =========================================================
+   13. MANAGE BUTTONS
+========================================================= */
+
+.buttons {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 5px;
+}
+
+
+/* PUT */
+
+#putBtn {
+    background-color: #2563eb;
+}
+
+
+#putBtn:hover {
+    background-color: #1d4ed8;
+}
+
+
+/* PATCH */
+
+#patchBtn {
+    background-color: #475569;
+}
+
+
+#patchBtn:hover {
+    background-color: #334155;
+}
+
+
+/* DELETE
+   Red color because delete is a destructive action.
+*/
+
+#deleteBtn {
+    background-color: #dc2626;
+}
+
+
+#deleteBtn:hover {
+    background-color: #b91c1c;
+}
+
+
+/* =========================================================
+   14. MESSAGE
+========================================================= */
+
+#message {
+    text-align: center;
+
+    margin-top: 15px;
+
+    color: #475569;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   15. TABLE
+   ---------------------------------------------------------
+   All Students page.
+========================================================= */
+
+table {
+    width: 100%;
+
+    margin-top: 15px;
+
+    border-collapse: collapse;
+
+    background-color: #ffffff;
+
+    border: 1px solid #dbe3ec;
+}
+
+
+/* Table cells */
+
+th,
+td {
+    padding: 11px;
+
+    text-align: center;
+
+    border: 1px solid #e2e8f0;
+
+    font-size: 14px;
+}
+
+
+/* Table heading */
+
+th {
+    background-color: #172033;
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+
+/* Alternate rows */
+
+tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+
+/* Table hover */
+
+tr:hover {
+    background-color: #eff6ff;
+}
+
+
+/* Table buttons */
+
+table button {
+    padding: 7px 11px;
+
+    margin: 2px;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   16. LOADING
+========================================================= */
+
+#loading {
+    text-align: center;
+
+    margin-top: 20px;
+
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   17. SEARCH BOX
+========================================================= */
+
+.search-box {
+    width: 550px;
+
+    max-width: 100%;
+
+    margin: 30px auto 40px;
+
+    text-align: center;
+}
+
+
+.search-box h2 {
+    margin-bottom: 15px;
+}
+
+
+/* Search field */
+
+.search-box input {
+    width: 100%;
+
+    padding: 13px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 7px;
+
+    background-color: #ffffff;
+
+    font-size: 14px;
+
+    box-shadow: 0 2px 7px rgba(15, 23, 42, 0.04);
+}
+
+
+/* Search field focus */
+
+.search-box input:focus {
+    outline: none;
+
+    border-color: #2563eb;
+
+    box-shadow: 0 0 0 2px #dbeafe;
+}
+
+
+/* =========================================================
+   18. SEARCH SUGGESTIONS
+========================================================= */
+
+#suggestions {
+    width: 100%;
+
+    text-align: left;
+
+    background-color: #ffffff;
+}
+
+
+/* One suggestion */
+
+.suggestion {
+    padding: 11px 13px;
+
+    background-color: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    border-top: none;
+
+    cursor: pointer;
+
+    color: #334155;
+
+    font-size: 14px;
+}
+
+
+/* Suggestion hover */
+
+.suggestion:hover {
+    background-color: #eff6ff;
+
+    color: #1d4ed8;
+}
+
+
+/* =========================================================
+   19. STUDENT RESULT
+========================================================= */
+
+.student-result {
+    width: 500px;
+
+    max-width: 100%;
+
+    margin: 20px auto;
+
+    padding: 20px;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 8px;
+
+    background-color: #f8fafc;
+}
+
+
+.student-result p {
+    margin: 10px 0;
+}
+
+
+/* Result link */
+
+.student-result a {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    padding: 9px 18px;
+
+    background-color: #2563eb;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+
+.student-result a:hover {
+    background-color: #1d4ed8;
+}
+
+
+/* =========================================================
+   20. STUDENT DETAIL PAGE
+========================================================= */
+
+.student-detail {
+    width: 550px;
+
+    max-width: 100%;
+
+    margin: auto;
+
+    text-align: center;
+}
+
+
+/* One student detail row */
+
+.detail-row {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 13px;
+
+    margin-bottom: 9px;
+
+    background-color: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 7px;
+
+    text-align: left;
+}
+
+
+/* Detail label */
+
+.detail-row strong {
+    color: #334155;
+}
+
+
+/* Detail value */
+
+.detail-row span {
+    color: #64748b;
+
+    text-align: right;
+}
+
+
+/* Home button on detail page */
+
+.student-detail > a {
+    display: inline-block;
+
+    margin-top: 20px;
+
+    padding: 10px 20px;
+
+    background-color: #2563eb;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+
+.student-detail > a:hover {
+    background-color: #1d4ed8;
+}
+
+
+/* =========================================================
+   21. PROFILE PAGE
+========================================================= */
+
+.profile-box {
+    width: 450px;
+
+    max-width: 100%;
+
+    margin: auto;
+
+    text-align: center;
+}
+
+
+/* Profile photo */
+
+.profile-photo {
+    margin-bottom: 20px;
+}
+
+
+/* Profile image */
+
+.profile-photo img {
+    width: 120px;
+
+    height: 120px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 4px solid #ffffff;
+
+    outline: 2px solid #2563eb;
+}
+
+
+/* Profile form */
+
+.profile-form {
+    text-align: left;
+}
+
+
+/* Update profile */
+
+.update-btn {
+    width: 100%;
+
+    margin-top: 5px;
+
+    background-color: #2563eb;
+}
+
+
+.update-btn:hover {
+    background-color: #1d4ed8;
+}
+
+
+/* Logout */
+
+.logout-btn {
+    display: block;
+
+    width: 100%;
+
+    margin-top: 12px;
+
+    padding: 10px;
+
+    background-color: #dc2626;
+
+    color: #ffffff;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+
+.logout-btn:hover {
+    background-color: #b91c1c;
+}
+
+
+/* =========================================================
+   22. FILE INPUT
+========================================================= */
+
+input[type="file"] {
+    padding: 8px;
+
+    background-color: #f8fafc;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   23. READONLY INPUT
+   ---------------------------------------------------------
+   Example: Profile ka email field.
+========================================================= */
+
+input[readonly] {
+    background-color: #f1f5f9;
+
+    color: #64748b;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   24. FOOTER
+========================================================= */
+
+footer {
+    text-align: center;
+
+    margin-top: 40px;
+
+    padding-top: 15px;
+
+    border-top: 1px solid #e2e8f0;
+
+    color: #94a3b8;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   25. MOBILE RESPONSIVE
+   ---------------------------------------------------------
+   Tablet aur mobile ke liye.
+========================================================= */
+
+@media (max-width: 800px) {
+
+    /* Main container */
+
+    .container {
+        max-width: 95%;
+
+        padding: 20px;
+
+        margin: 20px auto;
+    }
+
+
+    /* Navbar */
+
+    .top-nav {
+        flex-direction: column;
+
+        gap: 15px;
+
+        text-align: center;
+    }
+
+
+    /* Navigation links */
+
+    .nav-links {
+        justify-content: center;
+    }
+
+
+    /* Home cards */
+
+    .cards {
+        flex-direction: column;
+    }
+
+
+    /* Form row */
+
+    .row {
+        flex-direction: column;
+
+        gap: 0;
+    }
+
+
+    /* Table scroll */
+
+    table {
+        display: block;
+
+        overflow-x: auto;
+
+        white-space: nowrap;
+    }
+
+
+    /* Manage buttons */
+
+    .buttons {
+        flex-direction: column;
+    }
+
+
+    .buttons button {
+        width: 100%;
+    }
+
+
+    /* Student detail */
+
+    .detail-row {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 5px;
+    }
+
+
+    .detail-row span {
+        text-align: left;
+    }
+
+
+    /* Home hero */
+
+    .header {
+        height: 300px;
+
+        padding: 40px 20px;
+    }
+
+
+    .header h1 {
+        font-size: 28px;
+    }
+
+
+    .header p {
+        font-size: 14px;
+    }
+}
+
+
+/* =========================================================
+   26. SMALL MOBILE
+========================================================= */
+
+@media (max-width: 500px) {
+
+    /* Container */
+
+    .container {
+        max-width: 96%;
+
+        padding: 18px;
+    }
+
+
+    /* Navbar title */
+
+    .top-nav h3 {
+        font-size: 18px;
+    }
+
+
+    /* Navbar buttons */
+
+    .nav-links {
+        gap: 5px;
+    }
+
+
+    .nav-links a,
+    #userName {
+        font-size: 11px;
+
+        padding: 7px 9px;
+    }
+
+
+    /* Home heading */
+
+    .header h1 {
+        font-size: 23px;
+    }
+
+
+    .header p {
+        font-size: 13px;
+    }
+
+
+    /* Cards */
+
+    .card {
+        padding: 22px 18px;
+    }
+
+
+    /* Detail and result */
+
+    .student-detail,
+    .student-result {
+        width: 100%;
+    }
+}
+
+
+/* ṣucesss */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #eef2ff, #f8fafc);
+    color: #1e293b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    text-align: center;
+}
+
+/* Success heading */
+h1 {
+    font-size: clamp(26px, 4vw, 36px);
+    color: #15803d;
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+/* Success message */
+p {
+    font-size: 18px;
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+/* Navigation links */
+a {
+    display: inline-block;
+    text-decoration: none;
+    background: #2563eb;
+    color: #ffffff;
+    padding: 12px 18px;
+    margin: 7px 5px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+a:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+    body {
+        padding: 18px;
+    }
+
+    h1 {
+        font-size: 27px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    a {
+        padding: 11px 14px;
+        margin: 6px 3px;
+    }
+}

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Management System</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+
+        <!-- Top Navigation -->
+
+        <div class="top-nav">
+
+            <h3>Student Management</h3>
+
+            <div class="nav-links">
+
+                <a href="/home.html">Home</a>
+
+                <a href="/post.html">Add Student</a>
+
+                <a href="/allstudents.html">All Data</a>
+
+                <a href="/manage.html">Manage Data</a>
+
+                <a href="/auth/profile.html">Profile</a>
+
+                <a href="/auth/logout">Logout</a>
+
+                <span id="userName"></span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Header -->
+
+        <div class="header">
+
+            <h1>Student Management System</h1>
+
+            <p>
+                Manage student records easily with Express and MongoDB
+            </p>
+
+        </div>
+
+
+        <!-- Welcome -->
+
+        <div class="welcome">
+
+            <h2>Welcome</h2>
+
+            <p>
+                Choose an option below to manage student data.
+            </p>
+
+        </div>
+
+
+        <!-- Search -->
+
+        <div class="search-box">
+
+            <h2>Search Student</h2>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Enter student name"
+                autocomplete="off"
+            >
+
+            <div id="suggestions"></div>
+
+        </div>
+
+
+        <!-- Cards -->
+
+        <div class="cards">
+
+
+            <!-- Add Student -->
+
+            <div class="card">
+
+                <h3>Add Student</h3>
+
+                <p>
+                    Add a new student's details
+                    to the database.
+                </p>
+
+                <a href="/post.html">
+                    Add Student
+                </a>
+
+            </div>
+
+
+            <!-- All Students -->
+
+            <div class="card">
+
+                <h3>All Students</h3>
+
+                <p>
+                    View all students stored
+                    in the MongoDB database.
+                </p>
+
+                <a href="/allstudents.html">
+                    View Students
+                </a>
+
+            </div>
+
+
+            <!-- Manage -->
+
+            <div class="card">
+
+                <h3>Manage Data</h3>
+
+                <p>
+                    Update or delete existing
+                    student records.
+                </p>
+
+                <a href="/manage.html">
+                    Manage Data
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- Footer -->
+
+        <footer>
+
+            Student Management System &copy; 2026
+
+        </footer>
+
+
+    </div>
+
+
+    <script>
+
+
+        // ====================================
+        // LOGGED-IN USER NAME
+        // ====================================
+
+        async function loadUser() {
+
+            const response =
+                await fetch("/auth/me");
+
+            const user =
+                await response.json();
+
+            document.getElementById("userName").textContent =
+                user.name;
+
+        }
+
+
+        loadUser();
+
+
+
+        // ====================================
+        // SEARCH
+        // ====================================
+
+        const searchInput =
+            document.getElementById("searchInput");
+
+
+        const suggestions =
+            document.getElementById("suggestions");
+
+
+
+        // User typing
+        searchInput.addEventListener(
+            "input",
+            async () => {
+
+
+                const name =
+                    searchInput.value.trim();
+
+
+                // Kuch type nahi kiya
+                if (name === "") {
+
+                    suggestions.innerHTML = "";
+
+                    return;
+
+                }
+
+
+                // Backend search
+                const response =
+                    await fetch(
+                        `/data/search?name=${encodeURIComponent(name)}`
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                // Purani suggestions clear
+                suggestions.innerHTML = "";
+
+
+                // Suggestions show
+                data.forEach(student => {
+
+
+                    const item =
+                        document.createElement("div");
+
+
+                    item.textContent =
+                        student.name;
+
+
+                    item.className =
+                        "suggestion";
+
+
+                    // Suggestion par click
+                    item.addEventListener(
+                        "click",
+                        () => {
+
+                            window.location.href =
+                                `/studentdetail.html?id=${student._id}`;
+
+                        }
+                    );
+
+
+                    suggestions.appendChild(item);
+
+                });
+
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Login</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Login</h2>
+
+        <p>
+            Login to access Student Management System.
+        </p>
+
+        <br>
+
+        <form method="POST" action="/auth/login">
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter email"
+                required
+            >
+
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter password"
+                required
+            >
+
+
+            <button type="submit">
+                Login
+            </button>
+
+        </form>
+
+
+        <p style="margin-top: 15px;">
+
+            Don't have an account?
+
+            <a href="/auth/register.html">
+                Register
+            </a>
+
+        </p>
+
+    </div>
+
+</body>
+
+</html>

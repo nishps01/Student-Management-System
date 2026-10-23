@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Register</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Create Account</h2>
+
+        <p>
+            Register before logging into Student Management System.
+        </p>
+
+        <br>
+
+  <form action="/auth/register" method="POST">
+
+    <label>Name</label>
+    <input type="text" name="name" placeholder="Enter name">
+
+    <label>Email</label>
+    <input type="email" name="email" placeholder="Enter email">
+
+    <label>Password</label>
+    <input type="password" name="password" placeholder="Enter password">
+
+    <button type="submit">Register</button>
+
+</form>
+
+
+        <p style="margin-top: 15px;">
+
+            Already registered?
+
+            <a href="/auth/login.html">
+                Login
+            </a>
+
+        </p>
+
+    </div>
+
+</body>
+
+</html>

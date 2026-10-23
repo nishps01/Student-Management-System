@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Details</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <!-- Top Navigation -->
+
+        <div class="top-nav">
+
+            <h3>Student Management</h3>
+
+            <div class="nav-links">
+
+                <a href="/home.html">Home</a>
+
+                <a href="/post.html">Add Student</a>
+
+                <a href="/allstudents.html">All Data</a>
+
+                <a href="/manage.html">Manage Data</a>
+
+                <a href="/auth/profile.html">Profile</a>
+
+                <a href="/auth/logout">Logout</a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Student Detail -->
+
+        <div class="student-detail">
+
+            <h2>Student Details</h2>
+
+            <p id="loading">
+                Loading student...
+            </p>
+
+            <div id="studentData"></div>
+
+            <a href="/home.html">
+                Home
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        // URL se id lena
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        // id nikalna
+        const id =
+            params.get("id");
+
+
+        // Student data load karna
+        async function loadStudent() {
+
+            const response =
+                await fetch(`/data/${id}`);
+
+
+            const student =
+                await response.json();
+
+
+            const loading =
+                document.getElementById("loading");
+
+            const studentData =
+                document.getElementById("studentData");
+
+
+            loading.style.display = "none";
+
+
+            // Agar student nahi mila
+            if (!response.ok) {
+
+                studentData.innerHTML = `
+
+                    <p>
+                        ${student.message}
+                    </p>
+
+                `;
+
+                return;
+            }
+
+
+            // Student ki detail show
+            studentData.innerHTML = `
+
+                <div class="detail-row">
+                    <strong>Name:</strong>
+                    <span>${student.name || ""}</span>
+                </div>
+
+                <div class="detail-row">
+                    <strong>Section:</strong>
+                    <span>${student.section || ""}</span>
+                </div>
+
+                <div class="detail-row">
+                    <strong>High School:</strong>
+                    <span>${student.highschool || ""}</span>
+                </div>
+
+                <div class="detail-row">
+                    <strong>Intermediate:</strong>
+                    <span>${student.intermediate || ""}</span>
+                </div>
+
+                <div class="detail-row">
+                    <strong>BCA:</strong>
+                    <span>${student.bca || ""}</span>
+                </div>
+
+                <div class="detail-row">
+                    <strong>MCA:</strong>
+                    <span>${student.mca || ""}</span>
+                </div>
+
+            `;
+
+        }
+
+
+        loadStudent();
+
+    </script>
+
+</body>
+
+</html>
